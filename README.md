@@ -5,7 +5,7 @@ Final Project for STSCI 4520 - Statistical Computing (Cornell University, Spring
 <br>
 <i>Using Weather Data from https://www.ncei.noaa.gov/pub/data/uscrn/products/daily01/ </i>
 <br>
-<h3>create_dataset.R Notes</h3>
+<h3>create_dataset.R</h3>
   
   <b>Point 3</b> <br>
   - Recycled ex04 code for extracting information from weather dataset <br>
