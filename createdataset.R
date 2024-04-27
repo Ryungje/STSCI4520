@@ -2,9 +2,9 @@ library(dplyr)
 library(readr)
 library(stringr)
 
-base_path <- "/Users/stanleychen/Desktop/advancedR/CRND0103 Apr 8"
+base_path <- "../Project Dataset/CRND0103 Apr 8"
 
-headers <- read_lines(file.path(base_path, "../project/headers.txt"))
+headers <- read_lines(file.path(base_path, "../Project Dataset/headers.txt"))
 
 # Collect all data
 all_data <- list()
