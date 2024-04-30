@@ -1,0 +1,26 @@
+{
+    "id": "D73B461D",
+    "path": "~/CLASSES/STSCI_4520/Final Project/create_dataset.R",
+    "project_path": null,
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1714450785219.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "52,11",
+        "scrollLine": "27"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1714452323,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1714452323997,
+    "read_only": false,
+    "read_only_alternatives": []
+}

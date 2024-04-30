@@ -1,5 +1,3 @@
-library(dplyr)
-library(readr)
 library(stringr)
 
 
@@ -28,7 +26,7 @@ for (i in 2000:2024){
 
     # Collect data into matrix
     temp <- matrix(temp, byrow=TRUE, ncol=28)
-    temp <- cbind(temp, file_name)
+    temp <- cbind(temp, file_name) #attach station_name and state
     temp <- cbind(temp, state)
 
 
@@ -43,11 +41,16 @@ for (i in 2000:2024){
 
 }
 
-
+# Convert to data frame
 data <- data.frame(data)
-names(data) <- c(headers, "Station_Name", "State")
+
+# Update col names
+names(data) <- c(headers, "Station_Name", "State") #
+
+# Remove unnecessary columnss
 data <- data[,!colnames(data) %in% headers[12:28]]
 
-View(data)
-
+# Save data
+write.csv(data, file="Daily_Dataset.csv")
+save(data, file="Daily_Dataset.RData")
 
