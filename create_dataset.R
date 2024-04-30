@@ -1,16 +1,29 @@
 
 
-
-data <- scan("../Project Dataset/CRND0103-202404080750/2011/CRND0103-2011-AK_Sitka_1_NE.txt", what="character")
-headers <- scan("../Project Dataset/headers.txt", what="character")
-headers <- headers[29:56]
-
-data <- data.frame(matrix(data, ncol=length(headers), byrow = TRUE))
-names(data) <- headers
-
-for (i in headers[-20]){ #convert types into numerics
-  data[i] <- as.numeric(data[[i]])
+for (i in 2000:2024){
+  # Get path for each folder year
+  year_path <- file.path("CRND0103-202404080750", as.character(2000)) 
+  #UPDATE YEAR USING LOOP
+  
+  # Obtain .txt files in folder
+  files <- list.files(year_path, full.names = TRUE, pattern = "\\.txt$") 
+  
+  # Scan data and headers
+  data <- scan(files[1], what="character")
+  headers <- scan("headers.txt", what="character")
+  
+  headers <- headers[29:56] #extract only relevant headers
+  
+  # Create dataframe, while converting data into numerics
+  data <- data.frame(matrix( as.numeric(unlist(data) ), ncol=length(headers), byrow = TRUE))
+  names(data) <- headers
+  
+  data <- data[-c(12:28)] # remove unnecessary columns
+  
 }
 
+
+
 head(data)
+
 
