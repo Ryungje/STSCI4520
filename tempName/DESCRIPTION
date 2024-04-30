@@ -1,11 +1,10 @@
 Package: temporary
 Type: Package
-Title: What the Package Does (Title Case)
+Title: US Climate Reference Network in R
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author@R: person("James", "Chun", email="jrc447@cornell.edu", role=c("aut", "cre")), 
+          person("Stanley", "Chen", email="syc33@cornell.edu", role=c("aut", "cre"))
+Description: Statistical analysis on climate data collected by the US Climate Reference Network
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
