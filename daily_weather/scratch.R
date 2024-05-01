@@ -8,3 +8,8 @@ devtools::document() #to load in function documentation
 
 devtools::test()
 
+devtools::run_examples()
+
+devtools::check()
+
+
