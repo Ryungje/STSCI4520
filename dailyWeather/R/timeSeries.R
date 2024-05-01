@@ -9,7 +9,7 @@
 #' @returns A data frame
 #' @examples
 #' # Using built in dataset
-#' data <- daily_weather::data
+#' data <- dailyWeather::data
 #' start <- as.Date("20010101","%Y%m%d")
 #' end <- as.Date("20231231","%Y%m%d")
 #' ex1 <- get_time_series(data, "NC_Asheville_13_S", start = start)
