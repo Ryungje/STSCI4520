@@ -1,7 +1,7 @@
 
 test_that( "time series", {
 
-  data <- daily_weather::data
+  data <- dailyWeather::data
 
   # with no optional arguments
   test1 <- get_time_series(data, "NC_Asheville_13_S")

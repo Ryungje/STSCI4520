@@ -1,4 +1,4 @@
-Package: daily_weather
+Package: dailyWeather
 Type: Package
 Title: US Climate Reference Network in R
 Version: 0.1.0
