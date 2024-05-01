@@ -54,9 +54,15 @@ data <- data[,!colnames(data) %in% headers[12:28]]
 # Convert LST_DATE to Date Object
 data$LST_DATE <- as.Date(data$LST_DATE, "%Y%m%d")
 
+# Convert relevant columns into numerics
+for (i in names(data)[-c(2,12,13)]){
+  data[[i]] <- as.numeric(data[[i]])
+}
+
+
 # Save data
 #write.csv(data, file="Daily_Dataset.csv")
-#save(data, file="Daily_Dataset.RData")
+save(data, file="Daily_Dataset.RData")
 
 # Load data
 #load("Daily_Dataset.RData")

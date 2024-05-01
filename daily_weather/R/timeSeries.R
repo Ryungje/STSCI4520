@@ -32,8 +32,16 @@ get_time_series <- function(data, station, start=NULL, end=NULL){
     return <- data[which(data$Station_Name == station &
                            data$LST_DATE >= start &
                            data$LST_DATE <= end),
+<<<<<<< HEAD
     ]
   }
   
   return(return)
 }
+=======
+                   ]
+  }
+
+  return(return)
+}
+>>>>>>> e9d2c70769f07949c92b171debbc8a6bde884c8c

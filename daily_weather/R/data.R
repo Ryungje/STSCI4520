@@ -1,4 +1,4 @@
-#' NCEI daily weather data
+#' Daily weather data
 #'
 #' A data frame with daily weather data from 2000-2024
 #'
@@ -18,4 +18,4 @@
 #'     \item{Station_Name}{Station name}
 #'     \item{State}{Station's state}
 #' }
-"Daily_Dataset"
+"data"
