@@ -11,6 +11,8 @@ Final Project for STSCI 4520 - Statistical Computing (Cornell University, Spring
   - Recycled ex04 code for extracting information from weather dataset <br>
   - Then need to add code to extract station name and state from file name itself <br>
     - Starting with one file, then expanding to loop through entire dataset
+  - Finished data scraping script, create_data.R
+  - Saved dataset as Daily_Dataset.RData (and .csv) for future use
 <br>  
 <br>
   <b>Point 4</b> <br>

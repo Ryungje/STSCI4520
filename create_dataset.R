@@ -5,6 +5,7 @@ library(stringr)
 headers <- scan("headers.txt", what="character")
 headers <- headers[29:56] #extract only relevant headers
 
+
 # Initialize data
 data <- matrix(ncol=30)
 
@@ -29,7 +30,6 @@ for (i in 2000:2024){
     temp <- cbind(temp, file_name) #attach station_name and state
     temp <- cbind(temp, state)
 
-
     # Append temp to data
     if ( is.na(data[1]) ){
       data <- temp
@@ -41,16 +41,19 @@ for (i in 2000:2024){
 
 }
 
+
 # Convert to data frame
 data <- data.frame(data)
 
 # Update col names
 names(data) <- c(headers, "Station_Name", "State") #
 
-# Remove unnecessary columnss
+# Remove unnecessary columns
 data <- data[,!colnames(data) %in% headers[12:28]]
 
 # Save data
-write.csv(data, file="Daily_Dataset.csv")
-save(data, file="Daily_Dataset.RData")
+#write.csv(data, file="Daily_Dataset.csv")
+#save(data, file="Daily_Dataset.RData")
+
+#load("Daily_Dataset.RData")
 
