@@ -17,6 +17,7 @@ Final Project for STSCI 4520 - Statistical Computing (Cornell University, Spring
 <br>
   <b>Point 4</b> <br>
   - Assuming 'time series' will be another dataframe with the desired station's information (with optional parameters to indicate a specific time frame)
+  - Unclear what 'station id' means, will assume it's the station name
 <br>
 <br>
   <b>Point 5</b> <br>

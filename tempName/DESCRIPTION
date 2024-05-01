@@ -1,4 +1,4 @@
-Package: temporary
+Package: daily_weather
 Type: Package
 Title: US Climate Reference Network in R
 Version: 0.1.0
@@ -9,7 +9,7 @@ Description: Statistical analysis on climate data collected by the US Climate Re
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
