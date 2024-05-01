@@ -6,16 +6,16 @@ Final Project for STSCI 4520 - Statistical Computing (Cornell University, Spring
 <i>Using Weather Data from https://www.ncei.noaa.gov/pub/data/uscrn/products/daily01/ </i>
 <br>
 <h3>create_dataset.R</h3>
-  - Recycled ex04 code for extracting information from weather dataset <br>
+  - Recycled ex04 code for extracting information from weather data set <br>
   - Then need to add code to extract station name and state from file name itself <br>
-    - Starting with one file, then expanding to loop through entire dataset
-  - Finished data scraping script, create_data.R
+    - Starting with one file, then expanding to loop through entire data set
+  - Finished data scraping script
   - Saved dataset as Daily_Dataset.RData (and .csv) for future use
 <br>  
 <br>
 <h3>timeSeries.R</h3>  
-  <b>Point 4</b> <br>
-  - Assuming 'time series' will be another dataframe with the desired station's information (with optional parameters to indicate a specific time frame)
+  <b>Point 4 (in guidelines)</b> <br>
+  - Assuming 'time series' will be another data frame with the desired station's information (with optional parameters to indicate a specific time frame)
   - Unclear what 'station id' means, will assume it's the station name
 <br>
 <br>
@@ -26,7 +26,7 @@ Final Project for STSCI 4520 - Statistical Computing (Cornell University, Spring
 <br>  
 <br>
   <b>Point 6</b> <br>
-  - Maybe make a graph? Or just another dataframe filled with yearly temperature data for the station <br>
+  - Maybe make a graph? Or just another data frame filled with yearly temperature data for the station <br>
   - Either way, need to calculate the yearly average temperature for one station<br>
     - Going to use T_DAILY_AVG like before
 <br>
