@@ -25,6 +25,10 @@ for (i in 2000:2024){
     file_name <- str_extract(basename(f), "(?<=-)[A-Z]+_[A-Za-z_]+\\d*_\\w+")
     state <- str_extract(file_name, "^[A-Z]+")
 
+    if (is.na(file_name)){
+      file_name <- "MT_St._Mary_1_SSW"
+      state <- "MT"
+    }
     # Collect data into matrix
     temp <- matrix(temp, byrow=TRUE, ncol=28)
     temp <- cbind(temp, file_name) #attach station_name and state
@@ -59,6 +63,11 @@ for (i in names(data)[-c(2,12,13)]){
   data[[i]] <- as.numeric(data[[i]])
 }
 
+# fill in missing data
+#for (i in which(is.na(data$Station_Name))){
+#  data$Station_Name[i] <- "MT_St._Mary_1_SSW"
+#  data$State[i] <- "MT"
+#}
 
 # Save data
 #write.csv(data, file="Daily_Dataset.csv")
