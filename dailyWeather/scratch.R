@@ -20,9 +20,3 @@ data$LST_DATE[length(data$LST_DATE)]
 
 y <- get_yearly_cycle(data,"NC_Asheville_13_S")
 
-
-
-data[12483,]
-
-# problematic file
-str_extract("CRND0103-2003-MT_St._Mary_1_SSW.txt", "(?<=-)(.*)/.txt")

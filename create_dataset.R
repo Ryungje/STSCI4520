@@ -50,7 +50,7 @@ for (i in 2000:2024){
 data <- data.frame(data)
 
 # Update col names
-names(data) <- c(headers, "Station_Name", "State") #
+names(data) <- c(headers, "Station_Name", "State")
 
 # Remove unnecessary columns
 data <- data[,!colnames(data) %in% headers[12:28]]
