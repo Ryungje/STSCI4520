@@ -1,6 +1,7 @@
 #install.packages("devtools")
-#install.packages("daily_weather")
+install.packages("daily_weather")
 library("devtools")
+data <- dailyWeather::data
 
 dev <- function(){
   devtools::load_all() #to load in package
@@ -12,11 +13,5 @@ dev <- function(){
 
 dev()
 
-#data <- dailyWeather::data
 
-
-# get latest year
-data$LST_DATE[length(data$LST_DATE)]
-
-y <- get_yearly_cycle(data,"NC_Asheville_13_S")
-
+temp <- get_temp_trend(data, "NC_Asheville_13_S")
