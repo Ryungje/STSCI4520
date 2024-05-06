@@ -1,10 +1,12 @@
 #' Create a grid of points that fall within the contiguous USA.
 #'
 #' @param resolution optional argument for controlling the resolution, defaults to 1
-#' @returns
+#' @returns A spatial dataframe containing the grid points within the contiguous USA.
 #' @examples
-#' result <- create_usa_grid(resolution = 0.5)
+#' result <- create_usa_grid()
 #' print(result)
+#' result05 <- create_usa_grid(resolution = 0.5)
+#' print(result05)
 #' @export
 
 library(sf)
