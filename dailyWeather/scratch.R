@@ -4,7 +4,7 @@ library("devtools")
 data <- dailyWeather::data
 
 dev <- function(){
-  #devtools::load_all() #to load in package
+  devtools::load_all() #to load in package
   #devtools::document() #to load in function documentation
   devtools::test() #run tests
   #devtools::run_examples() #run examples in documentations
@@ -13,5 +13,3 @@ dev <- function(){
 
 dev()
 
-
-temp <- get_temp_trend(data, "NC_Asheville_13_S")
