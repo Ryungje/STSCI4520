@@ -5,8 +5,10 @@
 #' @examples
 #' result <- create_usa_grid()
 #' print(result)
+#' plot(result)
 #' result05 <- create_usa_grid(resolution = 0.5)
 #' print(result05)
+#' plot(result05)
 #' @export
 
 library(sf)
