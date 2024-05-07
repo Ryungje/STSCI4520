@@ -3,18 +3,18 @@
 #' @param resolution optional argument for controlling the resolution, defaults to 1
 #' @returns A spatial dataframe containing the grid points within the contiguous USA.
 #' @examples
+#'
 #' result <- create_usa_grid()
 #' print(result)
 #' plot(result)
+#' dev.off()
 #' result05 <- create_usa_grid(resolution = 0.5)
 #' print(result05)
 #' plot(result05)
 #' @export
-
-library(sf)
-library(maps)
-
 create_usa_grid <- function(resolution = 1) {
+  library(sf)
+  library(maps)
   # Load USA map data
   usa_map <- maps::map("usa", plot = FALSE, fill = TRUE)
   usa_sf <- st_as_sf(usa_map)

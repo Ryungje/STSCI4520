@@ -30,5 +30,4 @@ ex1 <- get_time_series(data, "NC_Asheville_13_S", start = start)
 ex2 <- get_time_series(data, "NC_Asheville_13_S", end = end)
 print(head(ex1$LST_DATE))
 print(tail(ex2$LST_DATE))
-
 }
