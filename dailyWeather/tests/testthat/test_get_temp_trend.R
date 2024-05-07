@@ -1,5 +1,5 @@
 
-test_that( "time series", {
+test_that( "temp trend", {
 
   data <- dailyWeather::data
 

@@ -1,0 +1,63 @@
+```{r}
+#1. Map of temperature for March 2024
+
+library(leaflet)
+
+data <- dailyWeather::data
+
+# create data frame
+n <- length(unique(data$Station_Name))
+temp <- data.frame(Station_Name = unique(data$Station_Name),
+                   Avg_Temp = rep(NA, n),
+                   LONGITUDE = rep(NA,n),
+                   LATITUDE = rep(NA, n))
+
+# fill in data
+for (n in temp$Station_Name){
+  p1 <- which(temp$Station_Name == n)
+  p2 <- which(data$Station_Name == n)[1]
+  
+  temp$LONGITUDE[p1] <- data$LONGITUDE[p2]
+  temp$LATITUDE[p1] <- data$LATITUDE[p2]
+  
+  start <- as.Date("03012024", "%m%d%Y")
+  end <- as.Date("03312024", "%m%d%Y")
+  sum <- get_time_series(data, n, start, end)$T_DAILY_AVG %>% sum() 
+  
+  temp$Avg_Temp[p1] <- sum/31
+}
+
+
+library(leaflet)
+
+# introduce noise to help with breaks
+temp$Avg_Temp <- jitter(temp$Avg_Temp)
+
+# Define color palette and breaks for legend
+pal <- colorQuantile("RdYlBu", temp$Avg_Temp)
+breaks <- pretty(temp$Avg_Temp, n = 5)
+
+# create map
+map <- leaflet(data = temp) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng = ~LONGITUDE,
+    lat = ~LATITUDE,
+    radius = 5,
+    color = "red",
+    fillColor = ~pal(Avg_Temp),
+    fillOpacity = 0.8,
+    popup = paste("Weather Station: ", temp$Avg_Temp, "<br>",
+                  "Temperature: ", temp$Avg_Temp, "°C")
+  ) %>%
+  addLegend(position = "bottomright", pal = pal, values = ~Avg_Temp, 
+            title = "Temperature (°C)", opacity = 1, 
+            labFormat = labelFormat(suffix = "°C"),
+            labels = round(breaks, 1))
+
+map
+
+
+
+```
+

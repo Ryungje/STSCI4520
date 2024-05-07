@@ -10,6 +10,7 @@
 #' interpolated_data <- interpolate_station_to_grid(data, points, "T_DAILY_AVG")
 #' print(interpolated_data)
 #' @export
+<<<<<<< HEAD
 
 library(sf)
 library(gstat)
@@ -54,4 +55,28 @@ interpolate_station_to_grid <- function(data_stations, grid, var) {
   names(interpolated_grid)[3] <- var
   
   return(interpolated_grid)
+=======
+interpolate_to_grid <- function(station_data, variable_name, grid_points, idw_power = 2) {
+  library(sf)
+  library(gstat)
+
+  if (!requireNamespace("sf", quietly = TRUE) || !requireNamespace("gstat", quietly = TRUE)) {
+    stop("Please install the 'sf' and 'gstat' packages to use this function.")
+  }
+
+  # Ensure the station data and grid points have the same CRS
+  if (st_crs(station_data) != st_crs(grid_points)) {
+    station_data <- st_transform(station_data, st_crs(grid_points))
+  }
+
+  # Prepare the IDW model using gstat
+  idw_model <- gstat::gstat(formula = as.formula(paste(variable_name, "~ 1")),
+                            locations = ~longitude+latitude, data = station_data,
+                            nmax = 7, set = list(idp = idw_power))
+
+  # Perform the interpolation over the grid
+  interpolated_values <- predict(idw_model, newdata = grid_points, type = "interp")
+
+  return(interpolated_values)
+>>>>>>> 4e8198b5763570d77d37f191d4500b3e38e134b0
 }
