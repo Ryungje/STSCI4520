@@ -1,9 +1,13 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
+
 ```{r}
 #1. Map of temperature for March 2024
-
 library(leaflet)
 
-data <- dailyWeather::data
 
 # create data frame
 n <- length(unique(data$Station_Name))
@@ -57,7 +61,119 @@ map <- leaflet(data = temp) %>%
 
 map
 
+```
+
+```{r}
+#2. Spatial model and interpolated map 
+library(spatialreg)
+library(spdep)
+library(FNN)
+
+# Create spatial weights matrix
+coords <- temp[, c("LONGITUDE", "LATITUDE")]
+w <- knn2nb(knearneigh(coords, k = 5))  # You can adjust the value of k as needed
+w <- nb2listw(w, style = "W")
+
+# Fit a spatial lag model
+model <- lagsarlm(Avg_Temp ~ 1, data = temp, listw = w)
+
+# Summary of the model
+summary(model)
 
 
 ```
+
+
+```{r}
+#3. Warmest and coldest day plots
+
+
+# obtain coldest and hottest days
+n <- length(unique(data$Station_Name))
+coldest <- data.frame(Station_Names = unique(data$Station_Name),
+                      Temp = rep(NA, n))
+hottest <- data.frame(Station_Names = unique(data$Station_Name),
+                      Temp = rep(NA, n))
+
+for (n in unique(data$Station_Name)){
+  cycle <- get_yearly_cycle(data, n)
+  
+  coldest$Temp[which(coldest$Station_Names == n)] <- min(cycle$mean_temp)
+  hottest$Temp[which(hottest$Station_Names == n)] <- max(cycle$mean_temp)
+}
+
+
+library(ggplot2)
+
+# Create a ggplot scatter plot
+ggplot(coldest, aes(x = Station_Names, y = Temp)) +
+  geom_point(color = "blue") +
+  labs(x = "Station Names", y = "Temperature", 
+       title = "Temperature by Station")
+
+ggplot(hottest, aes(x = Station_Names, y = Temp)) +
+  geom_point(color = "red") +
+  labs(x = "Station Names", y = "Temperature", 
+       title = "Temperature by Station")
+
+```
+
+
+```{r}
+#4. Yearly data for 10 stations
+
+names <- unique(data$Station_Name)[c(1,6,19,30,46,70,135,161,201,213)]
+
+cycles <- matrix(NA,nrow=365,ncol=10)
+colnames(cycles) <- names
+
+cycles <- data.frame(cycles)
+
+for (n in names){
+  cycles[[n]] <- get_yearly_cycle(data, n)$mean_temp
+}
+
+
+days <- 1:365
+
+# Create an empty plot
+plot(x = days, y = cycles[,1], type = "l", xlab = "Day of Year", ylab = "Temperature", 
+     main = "Daily Temperatures by Location")
+
+# Plot each station's temperatures
+for (i in 2:ncol(cycles)) {
+  lines(days, cycles[,i], col = i)
+}
+
+# Add legend
+legend("topright", legend = colnames(cycles), col = 1:ncol(cycles), lty = 1)
+
+
+```
+
+```{r}
+#5. Temp trends plot
+
+names <- unique(data$Station_Name)
+
+trends <- matrix(NA, nrow=25, ncol=length(names))
+colnames(trends) <- names
+trends <- data.frame(trends)
+
+for (n in names){
+  trends[[n]] <- get_temp_trend(data, n)$Temp * (9/5) + 32
+}
+
+
+
+```
+
+```{r}
+
+
+```
+
+
+
+
 

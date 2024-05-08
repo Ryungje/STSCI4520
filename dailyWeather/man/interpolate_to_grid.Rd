@@ -4,16 +4,14 @@
 \alias{interpolate_to_grid}
 \title{Interpolate station data to a grid within the contiguous USA}
 \usage{
-interpolate_to_grid(station_data, variable_name, grid_points, idw_power = 2)
+interpolate_to_grid(data, data_to_predict, variable)
 }
 \arguments{
+\item{variable}{The target variable}
+
 \item{station_data}{A spatial dataframe containing station locations and the variable to interpolate.}
 
-\item{variable_name}{The name of the variable in station_data to interpolate.}
-
-\item{grid_points}{A spatial dataframe of grid points where data needs to be interpolated.}
-
-\item{idw_power}{The power parameter for IDW interpolation, default is 2.}
+\item{date_to_predict}{The date to predict}
 }
 \value{
 A spatial dataframe of grid points with interpolated values.

@@ -1,9 +1,8 @@
 #' Interpolate station data to a grid within the contiguous USA
 #'
 #' @param station_data A spatial dataframe containing station locations and the variable to interpolate.
-#' @param variable_name The name of the variable in station_data to interpolate.
-#' @param grid_points A spatial dataframe of grid points where data needs to be interpolated.
-#' @param idw_power The power parameter for IDW interpolation, default is 2.
+#' @param date_to_predict The date to predict
+#' @param variable The target variable
 #' @returns A spatial dataframe of grid points with interpolated values.
 #' @examples
 #' stations <- st_as_sf(data.frame(longitude = c(-120, -122), latitude = c(36, 38), temp = c(15, 10)),
@@ -12,26 +11,29 @@
 #' interpolated_data <- interpolate_to_grid(stations, "temp", grid)
 #' print(interpolated_data)
 #' @export
-interpolate_to_grid <- function(station_data, variable_name, grid_points, idw_power = 2) {
-  library(sf)
-  library(gstat)
+interpolate_to_grid <- function(data, data_to_predict, variable){
+  #Locations
 
-  if (!requireNamespace("sf", quietly = TRUE) || !requireNamespace("gstat", quietly = TRUE)) {
-    stop("Please install the 'sf' and 'gstat' packages to use this function.")
-  }
+  available_data <- !is.na(data[variable])
+  locs <- cbind(data$LONGITUDE[available_data], data$LATITUDE[available_data])
 
-  # Ensure the station data and grid points have the same CRS
-  if (st_crs(station_data) != st_crs(grid_points)) {
-    station_data <- st_transform(station_data, st_crs(grid_points))
-  }
+  #Covariates
+  X <- cbind(rep(1, times = sum(available_data)), locs)
+  gpfit_model <- GpGp::fit_model(y = data["T_DAILY_AVG"][available_data,],
+                                 locs = locs, X = X,
+                                 "matern_sphere", silent = TRUE)
 
-  # Prepare the IDW model using gstat
-  idw_model <- gstat::gstat(formula = as.formula(paste(variable_name, "~ 1")),
-                            locations = ~longitude+latitude, data = station_data,
-                            nmax = 7, set = list(idp = idw_power))
+  pred_inds <- data_to_predict
+  locs_pred <- as.matrix(cbind(pred_inds[,1], pred_inds[,2]))
+  X_pred <- cbind(rep(1, nrow(locs_pred)), locs_pred)
+  prediction_data <- GpGp::predictions(fit = gpfit_model, locs_pred = locs_pred,
+                                       X_pred = X_pred, m = 30)
 
-  # Perform the interpolation over the grid
-  interpolated_values <- predict(idw_model, newdata = grid_points, type = "interp")
+  interpolated <- data.frame(LONGITUDE = data_to_predict[,1],
+                             LATITUDE = data_to_predict[,2],
+                             VALUE = prediction_data)
 
-  return(interpolated_values)
+  names(interpolated)[3] <- variable
+
+  return(interpolated)
 }
