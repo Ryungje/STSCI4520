@@ -1,3 +1,4 @@
+library(testthat)
 
 test_that("yearly cycle computation for specific station", {
 

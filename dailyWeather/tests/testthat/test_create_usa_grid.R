@@ -1,3 +1,5 @@
+library(testthat)
+
 test_that( "create grid of points", {
 
   test1 <- create_usa_grid()
