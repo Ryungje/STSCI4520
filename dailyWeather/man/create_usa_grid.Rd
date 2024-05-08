@@ -16,12 +16,10 @@ A spatial dataframe containing the grid points within the contiguous USA.
 Create a grid of points that fall within the contiguous USA.
 }
 \examples{
-
-result <- create_usa_grid()
+grid <- create_usa_grid()
 print(result)
 plot(result)
-dev.off()
-result05 <- create_usa_grid(resolution = 0.5)
+grid05 <- create_usa_grid(resolution = 0.5)
 print(result05)
 plot(result05)
 }

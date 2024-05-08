@@ -1,4 +1,4 @@
-Package: dailyWeather
+Package: usclimatrack
 Type: Package
 Title: US Climate Reference Network in R
 Version: 0.1.0

@@ -3,7 +3,6 @@
 #' @param data data frame with NCEI data
 #' @param station station name
 #' @returns A data frame
-#' @examples
 #' @export
 get_yearly_cycle <- function(data, station_name) {
   library(dplyr)
