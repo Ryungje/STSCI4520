@@ -1,3 +1,15 @@
+#' Plot the gridded interpolations on a map
+#'
+#' @param grid_data A dataframe of gridded interpolation points.
+#' @param variable_name The name of the variable in data_stations to interpolate.
+#' @returns An plot representing the interpolated data plotted over a map of the USA.
+#' @examples
+#' usa_grid <- create_usa_grid(resolution = 5)
+#' interpolated_data <- interpolate_station_to_grid(data, points, "T_DAILY_AVG")
+#' plot_gridded_interpolations(interpolated_data, 'T_DAILY_AVG')
+#' print(plot_gridded_interpolations)
+#' @export
+
 library(ggplot2)
 library(maps)
 
@@ -23,6 +35,3 @@ plot_gridded_interpolations <- function(grid_data, variable_name) {
   # Display the plot
   print(interpolation_plot)
 }
-
-# Example usage:
-# plot_gridded_interpolations(interpolated_data, 'T_DAILY_AVG')
